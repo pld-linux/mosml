@@ -15,6 +15,7 @@ BuildRequires:	mysql-devel
 BuildRequires:	postgresql-devel
 BuildRequires:	gd-devel
 BuildRequires:	gdbm-devel
+BuildRequires:	gdbm-static
 BuildRequires:	perl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
