@@ -2,7 +2,7 @@ Summary:	Moscow ML
 Summary(pl):	Moscow ML
 Name:		mosml
 Version:	2.00
-Release:	3
+Release:	4
 License:	GPL
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
@@ -11,10 +11,10 @@ URL:		http://www.dina.kvl.dk/~sestoft/mosml.html
 Source0:	ftp://ftp.dina.kvl.dk/pub/mosml/mos20src.tar.gz
 Patch0:		%{name}_dynlibs_setup.patch
 Patch1:		%{name}-makefile.patch
+Patch1:		%{name}-no-static-pq.patch
 BuildRequires:	mysql-devel
 BuildRequires:	postgresql-devel
 BuildRequires:	gd-devel
-BuildRequires:	gdbm-devel
 BuildRequires:	gdbm-static
 BuildRequires:	perl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -36,6 +36,48 @@ naukowych.
 Moscow ML jest oparty na Caml Light, co daje w efekcie szybk±
 kompilacjê i przyzwoit± objêto¶æ kodu.
 
+%package pq
+Summary:	MoscowML libraries for Posgresql
+Summary(pl):	Biblioteki MoscowML-a do Postgresql
+Group:		Development/Languages
+Group(de):	Entwicklung/Sprachen
+Group(pl):	Programowanie/Jêzyki
+Requires:	%{name} = %{version}
+
+%description pq
+MoscowML libraries for Posgresql
+
+%description pq -l pl
+Biblioteki MoscowML-a do Postgresql
+
+%package mysql
+Summary:	MoscowML libraries for Mysql
+Summary(pl):	Biblioteki MoscowML-a do Mysql
+Group:		Development/Languages
+Group(de):	Entwicklung/Sprachen
+Group(pl):	Programowanie/Jêzyki
+Requires:	%{name} = %{version}
+
+%description mysql
+MoscowML libraries for Mysql
+
+%description mysql -l pl
+Biblioteki MoscowML-a do Mysql
+
+%package doc
+Summary:	MoscowML pdf documentation
+Summary(pl):	Doskumentacja dla MoscowML w formacie pdf
+Group:		Development/Languages
+Group(de):	Entwicklung/Sprachen
+Group(pl):	Programowanie/Jêzyki
+Requires:	%{name} = %{version}
+
+%description doc
+MoscowML pdf documentation
+
+%description doc
+Doskumentacja dla MoscowML w formacie pdf
+
 %prep
 %setup -q -n mosml
 %patch0 -p1
@@ -52,6 +94,16 @@ cd src
 	OPTCFLAGS="%{rpmcflags}" \
 	world
 
+cd dynlibs
+%{__make} \
+	LIBDIR=%{_libdir}/mosml \
+	INCDIR=`pwd`/../runtime \
+        MYSQLLIBDIR=%{_libdir}/mysql \
+        MYSQLINCDIR=%{_includedir}/mysql \
+        PGSQLLIBDIR=%{_libdir} \
+        PGSQLINCDIR=%{_includedir}/postgresql \
+	OPTCFLAGS="%{rpmcflags}"
+
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/mosml
@@ -65,22 +117,8 @@ cd src
 	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml \
 	install
 
-perl -pi -e "s/\.\.\/config\///" $RPM_BUILD_ROOT%{_includedir}/mosml/config.h
 
 cd dynlibs
-%{__make} \
-	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
-	LIBDIR=$RPM_BUILD_ROOT%{_libdir}/mosml \
-	INCDIR=$RPM_BUILD_ROOT%{_includedir}/mosml \
-	TOOLDIR=$RPM_BUILD_ROOT%{_libdir}/mosml/tools \
-	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml \
-        MYSQLLIBDIR=%{_libdir}/mysql \
-        MYSQLINCDIR=%{_includedir}/mysql \
-        PGSQLLIBDIR=%{_libdir} \
-        PGSQLINCDIR=%{_includedir}/postgresql \
-	OPTCFLAGS="%{rpmcflags}"
-
-
 %{__make} \
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
 	LIBDIR=$RPM_BUILD_ROOT%{_libdir}/mosml \
@@ -108,9 +146,20 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc README.gz copyrght/*.gz doc/*.gz
-%doc src/doc/*.gz src/doc/helpsigs/mosmllib
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/libm*.so
+%attr(755,root,root) %{_libdir}/libmgdbm.so
+%attr(755,root,root) %{_libdir}/libmregex.so
+%attr(755,root,root) %{_libdir}/libmunix.so
+%attr(755,root,root) %{_libdir}/libmsocket.so
 %{_libdir}/mosml
 %{_includedir}/mosml
 %{_examplesdir}/mosml
+
+%files pq
+%{_libdir}/libmpq.so
+
+%files mysql
+%{_libdir}/libmmysql.so
+
+%files doc
+%doc src/doc/*.gz src/doc/helpsigs/mosmllib
