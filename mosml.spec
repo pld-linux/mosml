@@ -42,7 +42,7 @@ kompilacjê i przyzwoit± objêto¶æ kodu.
 Summary:	MoscowML bindings for gd library
 Summary(pl):	Wi±zania MoscowML-a dla biblioteki gd
 Group:		Development/Languages
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description gd
 MoscowML bindings for gd library.
@@ -54,7 +54,7 @@ Wi±zania MoscowML-a do biblioteki gd.
 Summary:	MoscowML bindings for gdbm library
 Summary(pl):	Wi±zania MoscowML-a dla biblioteki gdbm
 Group:		Development/Languages
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description gdbm
 MoscowML bindings for gdbm library.
@@ -66,7 +66,7 @@ Wi±zania MoscowML-a do biblioteki gdbm.
 Summary:	MoscowML libraries for Posgresql
 Summary(pl):	Biblioteki MoscowML-a do Postgresql
 Group:		Development/Languages
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description pq
 MoscowML libraries for Posgresql.
@@ -78,7 +78,7 @@ Biblioteki MoscowML-a do Postgresql.
 Summary:	MoscowML libraries for Mysql
 Summary(pl):	Biblioteki MoscowML-a do Mysql
 Group:		Development/Languages
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description mysql
 MoscowML libraries for Mysql.
@@ -90,7 +90,7 @@ Biblioteki MoscowML-a do Mysql.
 Summary:	MoscowML pdf documentation
 Summary(pl):	Dokumentacja dla MoscowML w formacie pdf
 Group:		Development/Languages
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 
 %description doc
 MoscowML pdf documentation.
@@ -99,20 +99,19 @@ MoscowML pdf documentation.
 Dokumentacja dla MoscowML w formacie pdf.
 
 %prep
-%setup -q -n mosml
+%setup -q -n %{name}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
 
 %build
-%{__make} -C src \
+%{__make} -C src world \
 	BINDIR=%{_bindir} \
 	LIBDIR=%{_libdir}/mosml \
 	INCDIR=%{_includedir}/mosml \
 	TOOLDIR=%{_libdir}/mosml/tools \
-	OPTCFLAGS="%{rpmcflags}" \
-	world
+	OPTCFLAGS="%{rpmcflags}"
 
 %{__make} -C src/dynlibs \
 	LIBDIR=%{_libdir}/mosml \
@@ -127,21 +126,19 @@ Dokumentacja dla MoscowML w formacie pdf.
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/mosml
 
-%{__make} -C src \
+%{__make} -C src install \
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
 	LIBDIR=$RPM_BUILD_ROOT%{_libdir}/mosml \
 	INCDIR=$RPM_BUILD_ROOT%{_includedir}/mosml \
 	TOOLDIR=$RPM_BUILD_ROOT%{_libdir}/mosml/tools \
-	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml \
-	install
+	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml
 
-%{__make} -C src/dynlibs \
+%{__make} -C src/dynlibs install \
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
 	LIBDIR=$RPM_BUILD_ROOT%{_libdir}/mosml \
 	INCDIR=$RPM_BUILD_ROOT%{_includedir}/mosml \
 	TOOLDIR=$RPM_BUILD_ROOT%{_libdir}/mosml/tools \
-	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml \
-	install
+	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml
 
 echo '#!/usr/bin/camlrunm' > $RPM_BUILD_ROOT%{_libdir}/mosml/header
 
@@ -150,7 +147,7 @@ cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/mosml/
 ln -sf ../../bin/camlrunm $RPM_BUILD_ROOT%{_libdir}/mosml/camlrunm
 
 mv -f src/doc/helpsigs/htmlsigs src/doc/helpsigs/mosmllib
-mv -f src/doc/helpsigs/index.html src/doc/helpsigs/mosmllib/
+mv -f src/doc/helpsigs/index.html src/doc/helpsigs/mosmllib
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -162,6 +159,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc README copyrght/*
 %attr(755,root,root) %{_bindir}/*
+%dir %{_libdir}/mosml
 %attr(755,root,root) %{_libdir}/mosml/libmregex.so
 %attr(755,root,root) %{_libdir}/mosml/libmunix.so
 %attr(755,root,root) %{_libdir}/mosml/libmsocket.so
