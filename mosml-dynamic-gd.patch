@@ -1,0 +1,11 @@
+--- mosml/src/dynlibs/mgd/Makefile~	2002-06-09 12:06:06.000000000 +0200
++++ mosml/src/dynlibs/mgd/Makefile	2002-06-09 12:07:03.000000000 +0200
+@@ -24,7 +22,7 @@
+ 	$(CC) $(CFLAGS) -c -o mgd.o mgd.c
+ 
+ libmgd.so: mgd.o
+-	$(DYNLD) -o libmgd.so mgd.o ${GDDIR}/libgd.a -L/usr/X11R6/lib -lpng -lz
++	$(DYNLD) -o libmgd.so mgd.o -lgd -L/usr/X11R6/lib -lpng -lz
+ #	$(DYNLD) -o libmgd.so mgd.o ${GDDIR}/libgd.a -R/pack/libs/lib -L/pack/libs/lib -lpng -lz
+ 
+ test: Graphs.uo
