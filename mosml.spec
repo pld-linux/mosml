@@ -6,6 +6,7 @@ Release:	8
 License:	GPL
 Group:		Development/Languages
 Source0:	ftp://ftp.dina.kvl.dk/pub/mosml/mos20src.tar.gz
+# Source0-md5:	b18f8022a06442f84c8dbfa47067ce07
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-no-static-pq.patch
 Patch2:		%{name}-dynamic-gd.patch
