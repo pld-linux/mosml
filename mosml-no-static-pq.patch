@@ -1,0 +1,12 @@
+diff -urN mosml/src/dynlibs/mpq/Makefile mosml-new/src/dynlibs/mpq/Makefile
+--- mosml/src/dynlibs/mpq/Makefile	Tue Jun 27 18:38:25 2000
++++ mosml-new/src/dynlibs/mpq/Makefile	Mon Oct 29 21:30:38 2001
+@@ -34,7 +34,7 @@
+ 
+ libmpq.so: mpq.o
+ # Some recent Linux distributions need this:
+-	$(DYNLD) -lcrypt -o libmpq.so mpq.o ${PGSQLLIBDIR}/libpq.a
++	$(DYNLD) -lcrypt -o libmpq.so mpq.o -L${PGSQLLIBDIR} -lpq	
+ #	$(DYNLD) -o libmpq.so mpq.o ${PGSQLLIBDIR}/libpq.a
+ 
+ install:
