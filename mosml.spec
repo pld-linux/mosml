@@ -2,7 +2,7 @@ Summary:	Moscow ML
 Summary(pl):	Moscow ML
 Name:		mosml
 Version:	2.00
-Release:	4
+Release:	5
 License:	GPL
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
@@ -136,6 +136,7 @@ ln -sf ../../bin/camlrunm $RPM_BUILD_ROOT%{_libdir}/mosml/camlrunm
 
 gzip -9nf README copyrght/* doc/* src/doc/*.pdf
 mv -f src/doc/helpsigs/htmlsigs src/doc/helpsigs/mosmllib
+mv -f src/doc/helpsigs/index.html src/doc/helpsigs/mosmllib/
 
 %clean
 rm -rf $RPM_BUILD_ROOT
