@@ -2,14 +2,15 @@ Summary:	Moscow ML
 Summary(pl):	Moscow ML
 Name:		mosml
 Version:	2.00
-Release:	7
+Release:	8
 License:	GPL
 Group:		Development/Languages
-URL:		http://www.dina.kvl.dk/~sestoft/mosml.html
 Source0:	ftp://ftp.dina.kvl.dk/pub/mosml/mos20src.tar.gz
-Patch0:		%{name}_dynlibs_setup.patch
-Patch1:		%{name}-makefile.patch
-Patch2:		%{name}-no-static-pq.patch
+Patch0:		%{name}-makefile.patch
+Patch1:		%{name}-no-static-pq.patch
+Patch2:		%{name}-dynamic-gd.patch
+Patch3:		%{name}-dynamic-gdbm.patch
+URL:		http://www.dina.kvl.dk/~sestoft/mosml.html
 BuildRequires:	mysql-devel
 BuildRequires:	postgresql-devel
 BuildRequires:	gd-devel
@@ -33,6 +34,30 @@ naukowych.
 
 Moscow ML jest oparty na Caml Light, co daje w efekcie szybk±
 kompilacjê i przyzwoit± objêto¶æ kodu.
+
+%package gd
+Summary:	MoscowML bindings for gd library
+Summary(pl):	Wi±zania MoscowML-a dla biblioteki gd
+Group:		Development/Languages
+Requires:	%{name} = %{version}
+
+%description gd
+MoscowML bindings for gd library.
+
+%description gd -l pl
+Wi±zania MoscowML-a do biblioteki gd.
+
+%package gdbm
+Summary:	MoscowML bindings for gdbm library
+Summary(pl):	Wi±zania MoscowML-a dla biblioteki gdbm
+Group:		Development/Languages
+Requires:	%{name} = %{version}
+
+%description gdbm
+MoscowML bindings for gdbm library.
+
+%description gdbm -l pl
+Wi±zania MoscowML-a do biblioteki gdbm.
 
 %package pq
 Summary:	MoscowML libraries for Posgresql
@@ -75,22 +100,20 @@ Dokumentacja dla MoscowML w formacie pdf.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
-cd src
-%{__make} \
+%{__make} -C src \
 	BINDIR=%{_bindir} \
 	LIBDIR=%{_libdir}/mosml \
 	INCDIR=%{_includedir}/mosml \
 	TOOLDIR=%{_libdir}/mosml/tools \
-	MOSMLHOME=%{_prefix}/mosml \
 	OPTCFLAGS="%{rpmcflags}" \
 	world
 
-cd dynlibs
-%{__make} \
+%{__make} -C src/dynlibs \
 	LIBDIR=%{_libdir}/mosml \
-	INCDIR=`pwd`/../runtime \
+	INCDIR=`pwd`/src/runtime \
 	MYSQLLIBDIR=%{_libdir}/mysql \
 	MYSQLINCDIR=%{_includedir}/mysql \
 	PGSQLLIBDIR=%{_libdir} \
@@ -101,8 +124,7 @@ cd dynlibs
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/mosml
 
-cd src
-%{__make} \
+%{__make} -C src \
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
 	LIBDIR=$RPM_BUILD_ROOT%{_libdir}/mosml \
 	INCDIR=$RPM_BUILD_ROOT%{_includedir}/mosml \
@@ -110,26 +132,20 @@ cd src
 	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml \
 	install
 
-
-cd dynlibs
-%{__make} \
+%{__make} -C src/dynlibs \
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
 	LIBDIR=$RPM_BUILD_ROOT%{_libdir}/mosml \
 	INCDIR=$RPM_BUILD_ROOT%{_includedir}/mosml \
 	TOOLDIR=$RPM_BUILD_ROOT%{_libdir}/mosml/tools \
 	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml \
 	install
-cd ../..
 
 echo '#!/usr/bin/camlrunm' > $RPM_BUILD_ROOT%{_libdir}/mosml/header
 
 cp -a tools/Makefile.stub $RPM_BUILD_ROOT%{_libdir}/mosml/tools
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/mosml/
-
-mv -f $RPM_BUILD_ROOT%{_libdir}/mosml/*.so $RPM_BUILD_ROOT%{_libdir}
 ln -sf ../../bin/camlrunm $RPM_BUILD_ROOT%{_libdir}/mosml/camlrunm
 
-gzip -9nf README copyrght/* doc/* src/doc/*.pdf
 mv -f src/doc/helpsigs/htmlsigs src/doc/helpsigs/mosmllib
 mv -f src/doc/helpsigs/index.html src/doc/helpsigs/mosmllib/
 
@@ -141,24 +157,38 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README.gz copyrght/*.gz doc/*.gz
+%doc README copyrght/* doc/*
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/libmgdbm.so
-%attr(755,root,root) %{_libdir}/libmregex.so
-%attr(755,root,root) %{_libdir}/libmunix.so
-%attr(755,root,root) %{_libdir}/libmsocket.so
-%{_libdir}/mosml
+%attr(755,root,root) %{_libdir}/mosml/libmregex.so
+%attr(755,root,root) %{_libdir}/mosml/libmunix.so
+%attr(755,root,root) %{_libdir}/mosml/libmsocket.so
+%{_libdir}/mosml/*.sig
+%{_libdir}/mosml/*.ui
+%{_libdir}/mosml/*.uo
+%{_libdir}/mosml/camlrunm
+%{_libdir}/mosml/header
+%{_libdir}/mosml/helpsigs.val
+%{_libdir}/mosml/mosml*
+%{_libdir}/mosml/tools
 %{_includedir}/mosml
 %{_examplesdir}/mosml
 
 %files pq
 %defattr(644,root,root,755)
-%{_libdir}/libmpq.so
+%attr(755,root,root) %{_libdir}/mosml/libmpq.so
+
+%files gd
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/mosml/libmgd.so
+
+%files gdbm
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/mosml/libmgdbm.so
 
 %files mysql
 %defattr(644,root,root,755)
-%{_libdir}/libmmysql.so
+%attr(755,root,root) %{_libdir}/mosml/libmmysql.so
 
 %files doc
 %defattr(644,root,root,755)
-%doc src/doc/*.gz src/doc/helpsigs/mosmllib
+%doc src/doc/*.pdf src/doc/helpsigs/mosmllib
