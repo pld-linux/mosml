@@ -45,10 +45,10 @@ Group(pl):	Programowanie/Jêzyki
 Requires:	%{name} = %{version}
 
 %description pq
-MoscowML libraries for Posgresql
+MoscowML libraries for Posgresql.
 
 %description pq -l pl
-Biblioteki MoscowML-a do Postgresql
+Biblioteki MoscowML-a do Postgresql.
 
 %package mysql
 Summary:	MoscowML libraries for Mysql
@@ -59,24 +59,24 @@ Group(pl):	Programowanie/Jêzyki
 Requires:	%{name} = %{version}
 
 %description mysql
-MoscowML libraries for Mysql
+MoscowML libraries for Mysql.
 
 %description mysql -l pl
-Biblioteki MoscowML-a do Mysql
+Biblioteki MoscowML-a do Mysql.
 
 %package doc
 Summary:	MoscowML pdf documentation
-Summary(pl):	Doskumentacja dla MoscowML w formacie pdf
+Summary(pl):	Dokumentacja dla MoscowML w formacie pdf
 Group:		Development/Languages
 Group(de):	Entwicklung/Sprachen
 Group(pl):	Programowanie/Jêzyki
 Requires:	%{name} = %{version}
 
 %description doc
-MoscowML pdf documentation
+MoscowML pdf documentation.
 
-%description doc
-Doskumentacja dla MoscowML w formacie pdf
+%description doc -l pl
+Dokumentacja dla MoscowML w formacie pdf.
 
 %prep
 %setup -q -n mosml
@@ -98,10 +98,10 @@ cd dynlibs
 %{__make} \
 	LIBDIR=%{_libdir}/mosml \
 	INCDIR=`pwd`/../runtime \
-        MYSQLLIBDIR=%{_libdir}/mysql \
-        MYSQLINCDIR=%{_includedir}/mysql \
-        PGSQLLIBDIR=%{_libdir} \
-        PGSQLINCDIR=%{_includedir}/postgresql \
+	MYSQLLIBDIR=%{_libdir}/mysql \
+	MYSQLINCDIR=%{_includedir}/mysql \
+	PGSQLLIBDIR=%{_libdir} \
+	PGSQLINCDIR=%{_includedir}/postgresql \
 	OPTCFLAGS="%{rpmcflags}"
 
 %install
