@@ -1,0 +1,56 @@
+diff -uNr ../mosml.orig/src/dynlibs/Makefile ./src/dynlibs/Makefile
+--- ../mosml.orig/src/dynlibs/Makefile	Sun Feb  6 15:08:02 2000
++++ ./src/dynlibs/Makefile	Fri Jun 30 08:53:18 2000
+@@ -1,8 +1,8 @@
+ 
+ all:
+-	cd interface; make 
+-	cd intinf; make 
+-	cd mgd; make 
++	#cd interface; make 
++	#cd intinf; make 
++	#cd mgd; make 
+ 	cd mgdbm; make 
+ 	cd mmysql; make 
+ 	cd mpq; make 
+@@ -11,8 +11,8 @@
+ 	cd munix; make 
+ 
+ install:
+-	cd intinf; make install 
+-	cd mgd; make install 
++	#cd intinf; make install 
++	#cd mgd; make install 
+ 	cd mgdbm; make install 
+ 	cd mmysql; make install 
+ 	cd mpq; make install 
+diff -uNr ../mosml.orig/src/dynlibs/intinf/Makefile ./src/dynlibs/intinf/Makefile
+--- ../mosml.orig/src/dynlibs/intinf/Makefile	Wed Feb 16 16:36:57 2000
++++ ./src/dynlibs/intinf/Makefile	Fri Jun 30 08:52:48 2000
+@@ -5,7 +5,7 @@
+ 
+ # Where to find GMP header file and compiled library
+ 
+-GMPDIR=${HOME}/c/gmp-2.0.2
++GMPDIR=/usr/lib
+ 
+ include ../../Makefile.inc
+ 
+diff -uNr ../mosml.orig/src/dynlibs/mgdbm/Makefile ./src/dynlibs/mgdbm/Makefile
+--- ../mosml.orig/src/dynlibs/mgdbm/Makefile	Wed Feb 16 16:36:57 2000
++++ ./src/dynlibs/mgdbm/Makefile	Fri Jun 30 08:52:48 2000
+@@ -5,10 +5,10 @@
+ 
+ # Where to find GDBM header file and compiled library
+ 
+-GDBMLIBDIR=${HOME}/c/gdbm-1.7.3
+-GDBMINCDIR=${HOME}/c/gdbm-1.7.3
+-#GDBMLIBDIR=/usr/lib
+-#GDBMINCDIR=/usr/include
++#GDBMLIBDIR=${HOME}/c/gdbm-1.7.3
++#GDBMINCDIR=${HOME}/c/gdbm-1.7.3
++GDBMLIBDIR=/usr/lib
++GDBMINCDIR=/usr/include
+ 
+ include ../../Makefile.inc
+ 
