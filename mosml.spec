@@ -5,8 +5,6 @@ Version:	2.00
 Release:	5
 License:	GPL
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 URL:		http://www.dina.kvl.dk/~sestoft/mosml.html
 Source0:	ftp://ftp.dina.kvl.dk/pub/mosml/mos20src.tar.gz
 Patch0:		%{name}_dynlibs_setup.patch
@@ -40,8 +38,6 @@ kompilacjê i przyzwoit± objêto¶æ kodu.
 Summary:	MoscowML libraries for Posgresql
 Summary(pl):	Biblioteki MoscowML-a do Postgresql
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Requires:	%{name} = %{version}
 
 %description pq
@@ -54,8 +50,6 @@ Biblioteki MoscowML-a do Postgresql.
 Summary:	MoscowML libraries for Mysql
 Summary(pl):	Biblioteki MoscowML-a do Mysql
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Requires:	%{name} = %{version}
 
 %description mysql
@@ -68,8 +62,6 @@ Biblioteki MoscowML-a do Mysql.
 Summary:	MoscowML pdf documentation
 Summary(pl):	Dokumentacja dla MoscowML w formacie pdf
 Group:		Development/Languages
-Group(de):	Entwicklung/Sprachen
-Group(pl):	Programowanie/Jêzyki
 Requires:	%{name} = %{version}
 
 %description doc
