@@ -1,22 +1,22 @@
 Summary:	Moscow ML
 Summary(pl):	Moscow ML
 Name:		mosml
-Version:	2.00
-Release:	8
+Version:	2.01
+Release:	1
 License:	GPL
 Group:		Development/Languages
-Source0:	ftp://ftp.dina.kvl.dk/pub/mosml/mos20src.tar.gz
-# Source0-md5:	b18f8022a06442f84c8dbfa47067ce07
+Source0:	http://www.dina.kvl.dk/~sestoft/mosml/mos201src.tar.gz
+# Source0-md5:	74aaaf988201fe92a9dbfbcb1e646f70
 Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-no-static-pq.patch
 Patch2:		%{name}-dynamic-gd.patch
 Patch3:		%{name}-dynamic-gdbm.patch
 URL:		http://www.dina.kvl.dk/~sestoft/mosml.html
-BuildRequires:	mysql-devel
-BuildRequires:	postgresql-devel
 BuildRequires:	gd-devel
-BuildRequires:	gdbm-static
-BuildRequires:	perl
+BuildRequires:	gdbm-devel
+BuildRequires:	mysql-devel
+BuildRequires:	perl-base
+BuildRequires:	postgresql-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -158,7 +158,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc README copyrght/* doc/*
+%doc README copyrght/*
 %attr(755,root,root) %{_bindir}/*
 %attr(755,root,root) %{_libdir}/mosml/libmregex.so
 %attr(755,root,root) %{_libdir}/mosml/libmunix.so
