@@ -111,3 +111,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libm*.so
 %{_libdir}/mosml
 %{_includedir}/mosml
+%{_examplesdir}/mosml
