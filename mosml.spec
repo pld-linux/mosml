@@ -19,8 +19,6 @@ BuildRequires:	perl-base
 BuildRequires:	postgresql-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%specflags	-fPIC
-
 %description
 Moscow ML provides a light-weight implementation of full Standard ML,
 including Modules and some extensions. Standard ML is a strict
@@ -120,7 +118,7 @@ Dokumentacja dla MoscowML w formacie pdf.
 	MYSQLINCDIR=%{_includedir}/mysql \
 	PGSQLLIBDIR=%{_libdir} \
 	PGSQLINCDIR=%{_includedir}/postgresql \
-	OPTCFLAGS="%{rpmcflags}"
+	OPTCFLAGS="%{rpmcflags} -fPIC"
 
 %install
 rm -rf $RPM_BUILD_ROOT
