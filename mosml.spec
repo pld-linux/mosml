@@ -19,6 +19,8 @@ BuildRequires:	perl-base
 BuildRequires:	postgresql-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%specflags	-fPIC
+
 %description
 Moscow ML provides a light-weight implementation of full Standard ML,
 including Modules and some extensions. Standard ML is a strict
