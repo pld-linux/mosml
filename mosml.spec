@@ -1,4 +1,5 @@
 Summary:	Moscow ML
+Summary(pl):	Moscow ML
 Name:		mosml
 Version:	2.00
 Release:	3
@@ -9,6 +10,12 @@ Group(pl):	Programowanie/Jêzyki
 URL:		http://www.dina.kvl.dk/~sestoft/mosml.html
 Source0:	ftp://ftp.dina.kvl.dk/pub/mosml/mos20src.tar.gz
 Patch0:		%{name}_dynlibs_setup.patch
+Patch1:		%{name}-makefile.patch
+BuildRequires:	mysql-devel
+BuildRequires:	postgresql-devel
+BuildRequires:	gd-devel
+BuildRequires:	gdbm-devel
+BuildRequires:	perl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -19,32 +26,19 @@ functional language widely used in teaching and research.
 Moscow ML is based on the Caml Light system, which gives fast
 compilation and modest storage consumption.
 
-   - The full SML Modules language (structures, signatures, and functors)
-     is now supported, thanks to Claudio Russo.
-   - Also, several extensions to the SML Modules language are provided:
-      - higher-order functors: functors may be defined within structures and
-        functors
-      - first-class modules: structures and functors may be packed and then
-        handled as Core language values, which may then be unpacked as
-        structures or functors again
-      - recursive modules: signatures and structures may be recursively
-        defined
-   - Despite that improvements, Moscow ML remains backwards compatible.
-   - Value polymorphism has become friendlier: non-generalizable free
-     type variables are left free, and become instantiated (once only) when
-     the bound variable is used
-   - Added facilities for creating and communicating with subprocesses
-     (structure Unix and Signal from SML Basis Library).
-   - Added facilities for efficient functional generation of HTML code
-     (structure Msp); also supports the writing of ML Server Page scripts.
-   - Added facilities setting and accessing `cookies' in CGI scripts
-     (structure Mosmlcookie), thanks to Hans Molin, Uppsala, Sweden.
-   - The Gdimage structure now produces PNG images (using Thomas
-     Boutell's gd library).
+%description -l pl
+Moscow ML udostêpnia zgrabn± implementacjê pe³nego Standard MLa,
+w³±czaj±c w to modu³y i niektóre rozszerzenia. Standard ML jest ¶ci¶le
+funkcyjnym jêzykiem, szeroko u¿ywanym w nauczaniu i badaniach
+naukowych.
+
+Moscow ML jest oparty na Caml Light, co daje w efekcie szybk±
+kompilacjê i przyzwoit± objêto¶æ kodu.
 
 %prep
 %setup -q -n mosml
 %patch0 -p1
+%patch1 -p1
 
 %build
 cd src
@@ -54,6 +48,7 @@ cd src
 	INCDIR=%{_includedir}/mosml \
 	TOOLDIR=%{_libdir}/mosml/tools \
 	MOSMLHOME=%{_prefix}/mosml \
+	OPTCFLAGS="%{rpmcflags}" \
 	world
 
 %install
@@ -77,7 +72,13 @@ cd dynlibs
 	LIBDIR=$RPM_BUILD_ROOT%{_libdir}/mosml \
 	INCDIR=$RPM_BUILD_ROOT%{_includedir}/mosml \
 	TOOLDIR=$RPM_BUILD_ROOT%{_libdir}/mosml/tools \
-	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml
+	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml \
+        MYSQLLIBDIR=%{_libdir}/mysql \
+        MYSQLINCDIR=%{_includedir}/mysql \
+        PGSQLLIBDIR=%{_libdir} \
+        PGSQLINCDIR=%{_includedir}/postgresql \
+	OPTCFLAGS="%{rpmcflags}"
+
 
 %{__make} \
 	BINDIR=$RPM_BUILD_ROOT%{_bindir} \
@@ -100,7 +101,7 @@ mv -f src/doc/helpsigs/htmlsigs src/doc/helpsigs/mosmllib
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -p /sbin/ldconfig
+%post   -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
 %files
