@@ -2,14 +2,14 @@ Summary:	Moscow ML
 Summary(pl):	Moscow ML
 Name:		mosml
 Version:	2.00
-Release:	6
+Release:	7
 License:	GPL
 Group:		Development/Languages
 URL:		http://www.dina.kvl.dk/~sestoft/mosml.html
 Source0:	ftp://ftp.dina.kvl.dk/pub/mosml/mos20src.tar.gz
 Patch0:		%{name}_dynlibs_setup.patch
 Patch1:		%{name}-makefile.patch
-Patch1:		%{name}-no-static-pq.patch
+Patch2:		%{name}-no-static-pq.patch
 BuildRequires:	mysql-devel
 BuildRequires:	postgresql-devel
 BuildRequires:	gd-devel
@@ -74,6 +74,7 @@ Dokumentacja dla MoscowML w formacie pdf.
 %setup -q -n mosml
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 cd src
