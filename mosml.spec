@@ -2,7 +2,7 @@ Summary:	Moscow ML
 Summary(pl):	Moscow ML
 Name:		mosml
 Version:	2.01
-Release:	1
+Release:	2
 License:	GPL
 Group:		Development/Languages
 Source0:	http://www.dina.kvl.dk/~sestoft/mosml/mos201src.tar.gz
