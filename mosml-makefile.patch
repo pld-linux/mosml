@@ -1,0 +1,249 @@
+diff -Naur mosml/src/dynlibs/Makefile mosml-p/src/dynlibs/Makefile
+--- mosml/src/dynlibs/Makefile	Tue Oct  9 19:37:55 2001
++++ mosml-p/src/dynlibs/Makefile	Tue Oct  9 19:52:07 2001
+@@ -1,43 +1,43 @@
+ 
+ all:
+-	#cd interface; make 
+-	#cd intinf; make 
+-	#cd mgd; make 
+-	cd mgdbm; make 
+-	cd mmysql; make 
+-	cd mpq; make 
+-	cd mregex; make 
+-	cd msocket; make 
+-	cd munix; make 
++	#cd interface; $(MAKE) 
++	#cd intinf; $(MAKE) 
++	#cd mgd; $(MAKE) 
++	cd mgdbm; $(MAKE) 
++	cd mmysql; $(MAKE) 
++	cd mpq; $(MAKE) 
++	cd mregex; $(MAKE) 
++	cd msocket; $(MAKE) 
++	cd munix; $(MAKE) 
+ 
+ install:
+-	#cd intinf; make install 
+-	#cd mgd; make install 
+-	cd mgdbm; make install 
+-	cd mmysql; make install 
+-	cd mpq; make install 
+-	cd mregex; make install 
+-	cd msocket; make install 
+-	cd munix; make install 
++	#cd intinf; $(MAKE) install 
++	#cd mgd; $(MAKE) install 
++	cd mgdbm; $(MAKE) install 
++	cd mmysql; $(MAKE) install 
++	cd mpq; $(MAKE) install 
++	cd mregex; $(MAKE) install 
++	cd msocket; $(MAKE) install 
++	cd munix; $(MAKE) install 
+ 
+ test:
+-	cd interface; make test 
+-	cd intinf; make test 
+-	cd mgd; make test 
+-	cd mgdbm; make test 
+-	cd mmysql; make test 
+-	cd mpq; make test 
+-	cd mregex; make test 
+-	cd munix; make test 
++	cd interface; $(MAKE) test 
++	cd intinf; $(MAKE) test 
++	cd mgd; $(MAKE) test 
++	cd mgdbm; $(MAKE) test 
++	cd mmysql; $(MAKE) test 
++	cd mpq; $(MAKE) test 
++	cd mregex; $(MAKE) test 
++	cd munix; $(MAKE) test 
+ 
+ clean:
+-	cd crypt; make clean
+-	cd interface; make clean
+-	cd intinf; make clean
+-	cd mgd; make clean
+-	cd mgdbm; make clean
+-	cd mmysql; make clean
+-	cd mpq; make clean
+-	cd mregex; make clean
+-	cd msocket; make clean
+-	cd munix; make clean
++	cd crypt; $(MAKE) clean
++	cd interface; $(MAKE) clean
++	cd intinf; $(MAKE) clean
++	cd mgd; $(MAKE) clean
++	cd mgdbm; $(MAKE) clean
++	cd mmysql; $(MAKE) clean
++	cd mpq; $(MAKE) clean
++	cd mregex; $(MAKE) clean
++	cd msocket; $(MAKE) clean
++	cd munix; $(MAKE) clean
+diff -Naur mosml/src/dynlibs/crypt/Makefile mosml-p/src/dynlibs/crypt/Makefile
+--- mosml/src/dynlibs/crypt/Makefile	Wed Feb 16 16:36:57 2000
++++ mosml-p/src/dynlibs/crypt/Makefile	Tue Oct  9 19:34:50 2001
+@@ -3,7 +3,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
+ BASELIBS=-lm -ldl
+ 
+ all: libcrypt.so 
+diff -Naur mosml/src/dynlibs/interface/Makefile mosml-p/src/dynlibs/interface/Makefile
+--- mosml/src/dynlibs/interface/Makefile	Tue Mar 14 16:40:47 2000
++++ mosml-p/src/dynlibs/interface/Makefile	Tue Oct  9 19:35:02 2001
+@@ -3,7 +3,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
+ 
+ all: libcside.so
+ 
+diff -Naur mosml/src/dynlibs/intinf/Makefile mosml-p/src/dynlibs/intinf/Makefile
+--- mosml/src/dynlibs/intinf/Makefile	Tue Oct  9 19:37:55 2001
++++ mosml-p/src/dynlibs/intinf/Makefile	Tue Oct  9 19:35:11 2001
+@@ -10,7 +10,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR) -I ${GMPDIR}
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR) -I ${GMPDIR}
+ 
+ MOSMLTOOLS=camlrunm $(MOSMLHOME)/tools
+ MOSMLC=mosmlc -c
+diff -Naur mosml/src/dynlibs/mgd/Makefile mosml-p/src/dynlibs/mgd/Makefile
+--- mosml/src/dynlibs/mgd/Makefile	Wed Feb 23 18:11:42 2000
++++ mosml-p/src/dynlibs/mgd/Makefile	Tue Oct  9 19:35:21 2001
+@@ -10,7 +10,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR) -I ${GDDIR}
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR) -I ${GDDIR}
+ 
+ MOSMLTOOLS=camlrunm $(MOSMLHOME)/tools
+ MOSMLC=mosmlc -c
+diff -Naur mosml/src/dynlibs/mgdbm/Makefile mosml-p/src/dynlibs/mgdbm/Makefile
+--- mosml/src/dynlibs/mgdbm/Makefile	Tue Oct  9 19:37:55 2001
++++ mosml-p/src/dynlibs/mgdbm/Makefile	Tue Oct  9 19:35:31 2001
+@@ -13,7 +13,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR) -I ${GDBMINCDIR}
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR) -I ${GDBMINCDIR}
+ BASELIBS=-lm -ldl
+ 
+ all: libmgdbm.so
+diff -Naur mosml/src/dynlibs/mmysql/Makefile mosml-p/src/dynlibs/mmysql/Makefile
+--- mosml/src/dynlibs/mmysql/Makefile	Wed Feb 16 16:36:57 2000
++++ mosml-p/src/dynlibs/mmysql/Makefile	Tue Oct  9 19:35:40 2001
+@@ -13,7 +13,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS= -Dunix -O2 $(OPTS) -I$(INCDIR) -I ${MYSQLINCDIR}
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) -I$(INCDIR) -I ${MYSQLINCDIR}
+ 
+ MOSMLTOOLS=camlrunm $(MOSMLHOME)/tools
+ MOSMLC=mosmlc -c
+diff -Naur mosml/src/dynlibs/mpq/Makefile mosml-p/src/dynlibs/mpq/Makefile
+--- mosml/src/dynlibs/mpq/Makefile	Tue Jun 27 18:38:25 2000
++++ mosml-p/src/dynlibs/mpq/Makefile	Tue Oct  9 19:35:50 2001
+@@ -19,7 +19,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR) -I ${PGSQLINCDIR}
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR) -I ${PGSQLINCDIR}
+ 
+ MOSMLTOOLS=camlrunm $(MOSMLHOME)/tools
+ MOSMLC=mosmlc -c
+diff -Naur mosml/src/dynlibs/mregex/Makefile mosml-p/src/dynlibs/mregex/Makefile
+--- mosml/src/dynlibs/mregex/Makefile	Wed Feb 16 17:03:42 2000
++++ mosml-p/src/dynlibs/mregex/Makefile	Tue Oct  9 19:36:28 2001
+@@ -6,7 +6,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
+ 
+ MOSMLTOOLS=camlrunm $(MOSMLHOME)/tools
+ MOSMLC=mosmlc -c
+diff -Naur mosml/src/dynlibs/mregex/regex-0.12/Makefile.in mosml-p/src/dynlibs/mregex/regex-0.12/Makefile.in
+--- mosml/src/dynlibs/mregex/regex-0.12/Makefile.in	Fri Jan 21 11:07:13 2000
++++ mosml-p/src/dynlibs/mregex/regex-0.12/Makefile.in	Tue Oct  9 19:36:00 2001
+@@ -31,7 +31,7 @@
+ include ../../../Makefile.inc
+ 
+ # Likewise, you can override CFLAGS to optimize, use -Wall, etc.
+-CFLAGS = -O2 $(ADDDYNLIBCFLAGS)
++CFLAGS=$(OPTCFLAGS) $(ADDDYNLIBCFLAGS)
+ 
+ # Ditto for LDFLAGS and LOADLIBES.
+ LDFLAGS =
+diff -Naur mosml/src/dynlibs/msocket/Makefile mosml-p/src/dynlibs/msocket/Makefile
+--- mosml/src/dynlibs/msocket/Makefile	Wed Feb 16 16:36:57 2000
++++ mosml-p/src/dynlibs/msocket/Makefile	Tue Oct  9 19:36:37 2001
+@@ -6,7 +6,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
+ 
+ MOSMLTOOLS=camlrunm $(MOSMLHOME)/tools
+ MOSMLC=mosmlc -c
+diff -Naur mosml/src/dynlibs/munix/Makefile mosml-p/src/dynlibs/munix/Makefile
+--- mosml/src/dynlibs/munix/Makefile	Wed Feb 16 16:36:57 2000
++++ mosml-p/src/dynlibs/munix/Makefile	Tue Oct  9 19:36:46 2001
+@@ -5,7 +5,7 @@
+ include ../../Makefile.inc
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I$(INCDIR)
+ 
+ MOSMLTOOLS=camlrunm $(MOSMLHOME)/tools
+ MOSMLC=mosmlc -c
+diff -Naur mosml/src/mosmllib/test/callback/Makefile mosml-p/src/mosmllib/test/callback/Makefile
+--- mosml/src/mosmllib/test/callback/Makefile	Fri Jan 21 11:07:13 2000
++++ mosml-p/src/mosmllib/test/callback/Makefile	Tue Oct  9 19:36:57 2001
+@@ -2,7 +2,7 @@
+ # Requires Dynlib
+ 
+ OPTS=-fno-defer-pop
+-CFLAGS=-Dunix -O2 $(OPTS) $(ADDDYNLIBCFLAGS) -I../../../runtime
++CFLAGS=$(OPTCFLAGS) -Dunix $(OPTS) $(ADDDYNLIBCFLAGS) -I../../../runtime
+ BASELIBS=-lm -ldl
+ 
+ include ../../../Makefile.inc
+diff -Naur mosml/src/mosmlyac/Makefile mosml-p/src/mosmlyac/Makefile
+--- mosml/src/mosmlyac/Makefile	Fri Jan 21 11:07:13 2000
++++ mosml-p/src/mosmlyac/Makefile	Tue Oct  9 19:00:50 2001
+@@ -1,6 +1,6 @@
+ # Unix Makefile for the parser generator.
+ 
+-CFLAGS=-O -DNDEBUG
++CFLAGS=$(OPTCFLAGS) -DNDEBUG
+ 
+ include ../Makefile.inc
+ 
+diff -Naur mosml/src/runtime/Makefile mosml-p/src/runtime/Makefile
+--- mosml/src/runtime/Makefile	Tue Jul 18 16:16:44 2000
++++ mosml-p/src/runtime/Makefile	Tue Oct  9 19:38:48 2001
+@@ -1,7 +1,7 @@
+ # Makefile for the Moscow ML 2.00 version of the Caml Light runtime system
+ 
+ OPTS=-fno-defer-pop -fomit-frame-pointer -DTHREADED
+-BASECFLAGS= -Dunix -O2 $(OPTS)
++BASECFLAGS=$(OPTCFLAGS) -Dunix $(OPTS)
+ 
+ BASELIBS=-lm
+ 
