@@ -149,10 +149,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_examplesdir}/mosml
 
 %files pq
+%defattr(644,root,root,755)
 %{_libdir}/libmpq.so
 
 %files mysql
+%defattr(644,root,root,755)
 %{_libdir}/libmmysql.so
 
 %files doc
+%defattr(644,root,root,755)
 %doc src/doc/*.gz src/doc/helpsigs/mosmllib
