@@ -1,0 +1,11 @@
+--- mosml/src/dynlibs/mgdbm/Makefile~	2002-06-09 12:06:06.000000000 +0200
++++ mosml/src/dynlibs/mgdbm/Makefile	2002-06-09 12:07:59.000000000 +0200
+@@ -25,7 +20,7 @@
+ 	$(CC) $(CFLAGS) -c -o mgdbm.o mgdbm.c 
+ 
+ libmgdbm.so: mgdbm.o
+-	$(DYNLD) -o libmgdbm.so mgdbm.o ${GDBMLIBDIR}/libgdbm.a
++	$(DYNLD) -o libmgdbm.so mgdbm.o -lgdbm
+ 
+ test:
+ 	mosml -P full testgdbm.sml
