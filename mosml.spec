@@ -2,7 +2,7 @@ Summary:	Moscow ML
 Summary(pl):	Moscow ML
 Name:		mosml
 Version:	2.00
-Release:	5
+Release:	6
 License:	GPL
 Group:		Development/Languages
 URL:		http://www.dina.kvl.dk/~sestoft/mosml.html
@@ -119,6 +119,8 @@ cd dynlibs
 	MOSMLHOME=$RPM_BUILD_ROOT%{_prefix}/mosml \
 	install
 cd ../..
+
+echo '#!/usr/bin/camlrunm' > $RPM_BUILD_ROOT%{_libdir}/mosml/header
 
 cp -a tools/Makefile.stub $RPM_BUILD_ROOT%{_libdir}/mosml/tools
 cp -a examples/* $RPM_BUILD_ROOT%{_examplesdir}/mosml/
