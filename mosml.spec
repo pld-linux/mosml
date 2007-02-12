@@ -1,5 +1,5 @@
 Summary:	Moscow ML - Standard ML implementation
-Summary(pl):	Moscow ML - implementacja jêzyka Standard ML
+Summary(pl.UTF-8):   Moscow ML - implementacja jÄ™zyka Standard ML
 Name:		mosml
 Version:	2.01
 Release:	6
@@ -27,73 +27,73 @@ functional language widely used in teaching and research.
 Moscow ML is based on the Caml Light system, which gives fast
 compilation and modest storage consumption.
 
-%description -l pl
-Moscow ML udostêpnia zgrabn± implementacjê pe³nego Standard MLa,
-w³±czaj±c w to modu³y i niektóre rozszerzenia. Standard ML jest ¶ci¶le
-funkcyjnym jêzykiem, szeroko u¿ywanym w nauczaniu i badaniach
+%description -l pl.UTF-8
+Moscow ML udostÄ™pnia zgrabnÄ… implementacjÄ™ peÅ‚nego Standard MLa,
+wÅ‚Ä…czajÄ…c w to moduÅ‚y i niektÃ³re rozszerzenia. Standard ML jest Å›ciÅ›le
+funkcyjnym jÄ™zykiem, szeroko uÅ¼ywanym w nauczaniu i badaniach
 naukowych.
 
-Moscow ML jest oparty na Caml Light, co daje w efekcie szybk±
-kompilacjê i przyzwoit± objêto¶æ kodu.
+Moscow ML jest oparty na Caml Light, co daje w efekcie szybkÄ…
+kompilacjÄ™ i przyzwoitÄ… objÄ™toÅ›Ä‡ kodu.
 
 %package gd
 Summary:	MoscowML bindings for gd library
-Summary(pl):	Wi±zania MoscowML-a dla biblioteki gd
+Summary(pl.UTF-8):   WiÄ…zania MoscowML-a dla biblioteki gd
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
 %description gd
 MoscowML bindings for gd library.
 
-%description gd -l pl
-Wi±zania MoscowML-a do biblioteki gd.
+%description gd -l pl.UTF-8
+WiÄ…zania MoscowML-a do biblioteki gd.
 
 %package gdbm
 Summary:	MoscowML bindings for gdbm library
-Summary(pl):	Wi±zania MoscowML-a dla biblioteki gdbm
+Summary(pl.UTF-8):   WiÄ…zania MoscowML-a dla biblioteki gdbm
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
 %description gdbm
 MoscowML bindings for gdbm library.
 
-%description gdbm -l pl
-Wi±zania MoscowML-a do biblioteki gdbm.
+%description gdbm -l pl.UTF-8
+WiÄ…zania MoscowML-a do biblioteki gdbm.
 
 %package pq
 Summary:	MoscowML libraries for Posgresql
-Summary(pl):	Biblioteki MoscowML-a do Postgresql
+Summary(pl.UTF-8):   Biblioteki MoscowML-a do Postgresql
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
 %description pq
 MoscowML libraries for Posgresql.
 
-%description pq -l pl
+%description pq -l pl.UTF-8
 Biblioteki MoscowML-a do Postgresql.
 
 %package mysql
 Summary:	MoscowML libraries for Mysql
-Summary(pl):	Biblioteki MoscowML-a do Mysql
+Summary(pl.UTF-8):   Biblioteki MoscowML-a do Mysql
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
 %description mysql
 MoscowML libraries for Mysql.
 
-%description mysql -l pl
+%description mysql -l pl.UTF-8
 Biblioteki MoscowML-a do Mysql.
 
 %package doc
 Summary:	MoscowML pdf documentation
-Summary(pl):	Dokumentacja dla MoscowML w formacie pdf
+Summary(pl.UTF-8):   Dokumentacja dla MoscowML w formacie pdf
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
 %description doc
 MoscowML pdf documentation.
 
-%description doc -l pl
+%description doc -l pl.UTF-8
 Dokumentacja dla MoscowML w formacie pdf.
 
 %prep
