@@ -1,5 +1,5 @@
 Summary:	Moscow ML - Standard ML implementation
-Summary(pl.UTF-8):   Moscow ML - implementacja języka Standard ML
+Summary(pl.UTF-8):	Moscow ML - implementacja języka Standard ML
 Name:		mosml
 Version:	2.01
 Release:	6
@@ -38,7 +38,7 @@ kompilację i przyzwoitą objętość kodu.
 
 %package gd
 Summary:	MoscowML bindings for gd library
-Summary(pl.UTF-8):   Wiązania MoscowML-a dla biblioteki gd
+Summary(pl.UTF-8):	Wiązania MoscowML-a dla biblioteki gd
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
@@ -50,7 +50,7 @@ Wiązania MoscowML-a do biblioteki gd.
 
 %package gdbm
 Summary:	MoscowML bindings for gdbm library
-Summary(pl.UTF-8):   Wiązania MoscowML-a dla biblioteki gdbm
+Summary(pl.UTF-8):	Wiązania MoscowML-a dla biblioteki gdbm
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
@@ -62,7 +62,7 @@ Wiązania MoscowML-a do biblioteki gdbm.
 
 %package pq
 Summary:	MoscowML libraries for Posgresql
-Summary(pl.UTF-8):   Biblioteki MoscowML-a do Postgresql
+Summary(pl.UTF-8):	Biblioteki MoscowML-a do Postgresql
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
@@ -74,7 +74,7 @@ Biblioteki MoscowML-a do Postgresql.
 
 %package mysql
 Summary:	MoscowML libraries for Mysql
-Summary(pl.UTF-8):   Biblioteki MoscowML-a do Mysql
+Summary(pl.UTF-8):	Biblioteki MoscowML-a do Mysql
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
@@ -86,7 +86,7 @@ Biblioteki MoscowML-a do Mysql.
 
 %package doc
 Summary:	MoscowML pdf documentation
-Summary(pl.UTF-8):   Dokumentacja dla MoscowML w formacie pdf
+Summary(pl.UTF-8):	Dokumentacja dla MoscowML w formacie pdf
 Group:		Development/Languages
 Requires:	%{name} = %{version}-%{release}
 
