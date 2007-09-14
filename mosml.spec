@@ -2,7 +2,7 @@ Summary:	Moscow ML - Standard ML implementation
 Summary(pl.UTF-8):	Moscow ML - implementacja języka Standard ML
 Name:		mosml
 Version:	2.01
-Release:	6
+Release:	7
 License:	GPL
 Group:		Development/Languages
 Source0:	http://www.dina.kvl.dk/~sestoft/mosml/mos201src.tar.gz
