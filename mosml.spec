@@ -2,7 +2,7 @@ Summary:	Moscow ML - Standard ML implementation
 Summary(pl.UTF-8):	Moscow ML - implementacja języka Standard ML
 Name:		mosml
 Version:	2.01
-Release:	7
+Release:	8
 License:	GPL
 Group:		Development/Languages
 Source0:	http://www.dina.kvl.dk/~sestoft/mosml/mos201src.tar.gz
@@ -11,6 +11,8 @@ Patch0:		%{name}-makefile.patch
 Patch1:		%{name}-no-static-pq.patch
 Patch2:		%{name}-dynamic-gd.patch
 Patch3:		%{name}-dynamic-gdbm.patch
+Patch4:		%{name}-mmysql.patch
+Patch5:		%{name}-msocket.patch
 URL:		http://www.dina.kvl.dk/~sestoft/mosml.html
 BuildRequires:	gd-devel
 BuildRequires:	gdbm-devel
@@ -102,6 +104,8 @@ Dokumentacja dla MoscowML w formacie pdf.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
+%patch5 -p1
 
 %build
 %{__make} -C src world \
