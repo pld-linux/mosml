@@ -1,0 +1,14 @@
+--- mosml/src/dynlibs/msocket/msocket.c~	2000-01-21 11:07:13.000000000 +0100
++++ mosml/src/dynlibs/msocket/msocket.c	2007-09-14 17:22:30.027747603 +0200
+@@ -65,11 +65,7 @@
+ */
+ 
+ /* Decomposition of sock_ values: */
+-#ifdef macintosh
+ #define Sock_val(x) (Field(x,0))
+-#else
+-#define Sock_val(x) ((int) Field(x,0))
+-#endif
+ 
+ /* Decomposition of addr values: */
+ #define Size_addrval(a)   Field(a, 0)
